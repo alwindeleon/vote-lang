@@ -1,0 +1,14 @@
+ballot
+nominate x as int
+nominate y as int
+done
+
+vote(x)
+vote(y)
+
+rally x <= y
+pork (x%4) == 0
+elect(x)
+done
+x = x + 1
+done
