@@ -37,7 +37,7 @@ def run():
 
     if (dictionary):
         try:
-            start
+            start()
         except ParserError as e:
             error(e,code)
             return

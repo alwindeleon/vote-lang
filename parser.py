@@ -5,6 +5,7 @@ import inspect
 from collections import deque
 
 global dictionary,code
+dictionary = l.get_tokens('test.vote')
 class Node:
   """what is this thing"""
   def __init__(self):
@@ -154,7 +155,7 @@ def peek(arg1):
   return node
 
 def error(e,code):
-  global filename, tabs, node
+  global filename, tabs, node 
   toprint = "Error in file!!!!!! '" + filename + "', line " + str(e.lineno) + "\n"
   # fp = open(filename,'r')
   tmp = tabs
