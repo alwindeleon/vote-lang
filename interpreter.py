@@ -50,8 +50,8 @@ EOF = SEPARATOR+1
 from lex import get_tokens
 import sys
 import traceback
+#python.py is the default name for the python file we will create from interpreting the input file
 def interpret():
-  #python.py is the default name for the python file we will create from interpreting the input file
   output = open("python.py", "w")
   #dictionary is where lexemes and tokens from the input file are stored
   dictionary = get_tokens("test.vote")
@@ -246,10 +246,19 @@ def interpret():
           y+=1
         output.write("while ")
         index+=1
+        check_then = 0
         while (token[index] != NEWLINE):
-          output.write(str(lexe[index]))
+          if (token[index] == THEN):
+            check_then = 1
+          else:
+            output.write(str(lexe[index]))
           index+=1
         output.write(":")
+        if (check_then == 0):
+          errornumber = 6 #ERROR: FORGOT 'THEN'
+          end = 1
+          area = 3
+          break
         tabcounter+=1
       #if the next token is a variable (which means there will be an assignment statement), we first check if the variable has been declared
       elif(token[index] == IDENTIFIER):

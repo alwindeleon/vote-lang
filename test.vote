@@ -6,8 +6,8 @@ done
 vote(x)
 vote(y)
 
-rally x <= y
-pork (x%4) == 0
+rally x <= y then
+pork (x%4) == 0 then
 elect(x)
 done
 x = x + 1

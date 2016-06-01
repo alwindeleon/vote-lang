@@ -4,6 +4,7 @@ import inspect
 
 from collections import deque
 
+global dictionary,code
 class Node:
   """what is this thing"""
   def __init__(self):
@@ -152,37 +153,26 @@ def peek(arg1):
   # print ""
   return node
 
-def error(e):
+def error(e,code):
   global filename, tabs, node
-  print "Error in file '" + filename + "', line " + str(e.lineno)
-  fp = open(filename)
+  toprint = "Error in file!!!!!! '" + filename + "', line " + str(e.lineno) + "\n"
+  # fp = open(filename,'r')
   tmp = tabs
   tabs = 1
-  tabulate()
-  line = "lmao may bug"
-  for i in xrange(int(e.lineno)):
-    line = fp.readline().splitlines()
-  for j in list(line[0]):
+  # indent = tabulate()
+  # string = ''
+  for i in xrange(tabs):
+    toprint = toprint + "\t"
+  # line = "lmao may bug"
+  # print str(e.lineno())
+  data = code.split('\n')
+  # for i in xrange(int(e.lineno)):
+  #   line = fp.readline().splitlines()
+  for j in list(data[int(e.lineno)-1]):
     if (j == '\t'):
-      tabs = tabs + 1
+      toprint = toprint + "\t"
     else:
       break
-  print line[0]
-  tabulate()
-  tabs = tmp
-  for i in xrange(e.offset - 1):
-    sys.stdout.write(' ')
-  sys.stdout.flush()
-  print "^"
-  print "Syntactical Error: got '" + e.lexeme + "' but expected '" + l.actual[e.expected] + "'"
-  fp.close()
-
-# def leave(string):
-#   global tabs
-#   tabs = tabs-1
-#   tabulate()
-#   print "</" + string + ">"
-
 
 def start():
   declarationblock()

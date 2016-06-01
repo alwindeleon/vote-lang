@@ -400,5 +400,5 @@ def get_tokens(string):
             return dicto
         except TokenError as e:
             print "Lexical Error at line " + str(e.lineno) + ": got '" + e.lexeme + "' but expected '" + actual[e.expected] + "'"
-
+            line = 1
 # get_tokens(raw_input())

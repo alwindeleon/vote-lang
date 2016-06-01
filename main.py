@@ -3,8 +3,9 @@ from Tkinter import Menu
 import ScrolledText
 import sys
 import threading
-from parser import parse
+from parser import parse, error, ParserError,start
 from interpreter import interpret
+from lex import get_tokens
 class StdoutRedirector(object):
     def __init__(self,text_widget):
         self.text_space = text_widget
@@ -24,15 +25,22 @@ sys.stdout = StdoutRedirector(textWidget)
 
 # create a menu
 def run():
+    global dictionary, code
     # console.start()
     code = textPad.get("1.0",tk.END+'-1c')
-    newfile = open('test.vote','w')
-    newfile.write(code)
+    # print code
+    filename = 'test.vote'
+    newfile = open(filename,'w')
+    newfile.write(code )
     newfile.close()
-    try:
-      parse()
-    except:
-      return
+    dictionary = get_tokens(filename)
+
+    if (dictionary):
+        try:
+            start
+        except ParserError as e:
+            error(e,code)
+            return
     interpret()
     print 'done'
 menu = Menu(root)
